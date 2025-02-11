@@ -1,38 +1,99 @@
-.App {
-  text-align: center;
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+/* HEADER */
+
+nav{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+nav ul{
+  display: flex;
+  list-style: none;
+  gap: 2rem;
+  text-decoration: none;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+nav li a {
+  text-decoration: none;
+  color: black;
+  font-size: 1rem;
+  transition: color 0.3s ease;
+}
+
+nav li a:hover {
+  color: yellow; /* Cambia colore al passaggio del mouse */
+}
+
+/* HERO */
+
+.hero {
+  display: grid; /* Attiva CSS Grid */
+  grid-template-columns: 1fr 1fr; /* Divide lo spazio in due colonne uguali */
+  align-items: center; /* Allinea verticalmente il contenuto */
+  gap: 20px; /* Spazio tra le colonne */
+  padding: 2rem;
+  background-color: #f4f4f4;
+}
+
+.hero-text{
+  grid-column: 1;
+  padding: 2rem;
+}
+
+.hero img {
+  grid-column: 2; /* Posiziona l'immagine nella seconda colonna */
+  height: 40rem;
+  width: 40rem;
+  position: relative;
+  border-radius: 2rem;
+  object-fit: cover;
+}
+
+/* hightlinghs */
+
+.highlights{
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+
 }
 
-.App-link {
-  color: #61dafb;
+.highlight-items{
+  display: flex;
+  gap: 2rem;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.highlight-item{
+  flex: 1; /* Ogni piatto occupa uno spazio proporzionale */
+  min-width: 300px; /* Imposta una larghezza minima per evitare che diventi troppo stretto */
+  background-color: #fff;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  padding: 20px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.highlight-item:hover {
+  transform: translateY(-10px); /* Effetto di sollevamento al passaggio del mouse */
+  box-shadow: 0 8px 12px rgba(0, 0, 0, 0.2);
+}
+
+.highlight-item img {
+  width: 100%;
+  height: 200px;
+  object-fit: cover; /* Mantieni le proporzioni dell'immagine */
+  border-radius: 8px;
+  margin-bottom: 15px;
+}
+
+.highlight-item p {
+  font-size: 1rem;
+  color: #666;
 }
