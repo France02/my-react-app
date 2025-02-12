@@ -4,12 +4,19 @@
   box-sizing: border-box;
 }
 
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
 /* HEADER */
 
 nav{
   display: flex;
   justify-content: space-between;
   align-items: center;
+  padding: 20px 20px;
 }
 
 nav ul{
@@ -35,15 +42,16 @@ nav li a:hover {
 .hero {
   display: grid; /* Attiva CSS Grid */
   grid-template-columns: 1fr 1fr; /* Divide lo spazio in due colonne uguali */
-  align-items: center; /* Allinea verticalmente il contenuto */
   gap: 20px; /* Spazio tra le colonne */
-  padding: 2rem;
-  background-color: #f4f4f4;
+  padding: 1rem;
+  background-color: #495e57;
+  align-items: center;
 }
 
 .hero-text{
   grid-column: 1;
   padding: 2rem;
+  
 }
 
 .hero img {
@@ -53,25 +61,112 @@ nav li a:hover {
   position: relative;
   border-radius: 2rem;
   object-fit: cover;
+  bottom: -5rem;
+}
+
+.hero h1 {
+  font-size: 2.5rem;
+  color: #F4CE14;
+  margin-bottom: 10px;
+}
+
+.hero h4 {
+  font-size: 1.5rem;
+  color: white;
+  margin-bottom: 20px;
+}
+
+.hero p {
+  font-size: 1rem;
+  color: white;
+  line-height: 1.6;
+}
+
+.hero button{
+  background-color: #f4ce14; /* Colore di sfondo del pulsante */
+  color: #333; /* Colore del testo del pulsante */
+  border: none; /* Rimuove il bordo */
+  border-radius: 2rem; /* Bordo arrotondato */
+  font-size: 1rem; /* Dimensione del testo del pulsante */
+  padding: 0.75rem 1.5rem; /* Padding interno del pulsante */
+  cursor: pointer; /* Cambia il cursore al passaggio del mouse */
+  transition: background-color 0.3s ease; /* Effetto di transizione */
+  margin-top: 1.5rem; /* Spazio sopra il pulsante */
+}
+
+.hero-text button:hover {
+  background-color: #e0b800; /* Cambia colore al passaggio del mouse */
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .hero {
+    grid-template-columns: 1fr; /* Una sola colonna su dispositivi mobili */
+    
+  }
+
+  .hero-text {
+    grid-column: 1; /* Il testo occupa tutta la larghezza */
+    padding: 1rem; /* Riduce il padding */
+  }
+
+  .hero img {
+    grid-column: 1; /* L'immagine occupa tutta la larghezza */
+    margin-top: 20px; /* Spazio sopra l'immagine */
+    width: 100%; /* Larghezza dell'immagine */
+    height: auto; /* Altezza automatica */
+  }
 }
 
 /* hightlinghs */
 
-.highlights{
+/* Stile generale della sezione Highlights */
+.highlights {
   display: flex;
-  flex-direction: column;
-  align-items: center;
-
+  flex-direction: column; /* Layout verticale */
+  padding: 6rem 2rem; /* Riduce il padding su schermi più piccoli */
+ 
 }
 
-.highlight-items{
+.header-container {
   display: flex;
-  gap: 2rem;
+  justify-content: space-between; /* Titolo a sinistra, pulsante a destra */
+  align-items: center; /* Allinea verticalmente */
+  margin-bottom: 2rem; /* Spazio sotto il contenitore */
 }
 
-.highlight-item{
-  flex: 1; /* Ogni piatto occupa uno spazio proporzionale */
-  min-width: 300px; /* Imposta una larghezza minima per evitare che diventi troppo stretto */
+.header-container h2 {
+  font-size: 2rem;
+  color: #333;
+  margin: 0;
+}
+
+.header-container button {
+  background-color: #f4ce14;
+  color: #333;
+  border: none;
+  border-radius: 2rem;
+  font-size: 1rem;
+  padding: 0.75rem 1.5rem;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.header-container button:hover {
+  background-color: #e0b800;
+}
+
+.highlight-items {
+  display: flex;
+  gap: 2rem; /* Spazio tra le card */
+  flex-wrap: wrap; /* Permette il ritorno a capo su schermi piccoli */
+  justify-content: center; /* Centra le card quando si riduce lo spazio */
+}
+
+.highlight-item {
+  flex: 1; /* Ogni card occupa uno spazio proporzionale */
+  min-width: 300px; /* Larghezza minima per evitare che diventi troppo stretta */
+  max-width: 400px; /* Larghezza massima per mantenere le proporzioni */
   background-color: #fff;
   border: 1px solid #ddd;
   border-radius: 8px;
@@ -81,14 +176,14 @@ nav li a:hover {
 }
 
 .highlight-item:hover {
-  transform: translateY(-10px); /* Effetto di sollevamento al passaggio del mouse */
+  transform: translateY(-10px); /* Effetto di sollevamento */
   box-shadow: 0 8px 12px rgba(0, 0, 0, 0.2);
 }
 
 .highlight-item img {
   width: 100%;
   height: 200px;
-  object-fit: cover; /* Mantieni le proporzioni dell'immagine */
+  object-fit: cover; /* Mantieni le proporzioni */
   border-radius: 8px;
   margin-bottom: 15px;
 }
@@ -96,4 +191,249 @@ nav li a:hover {
 .highlight-item p {
   font-size: 1rem;
   color: #666;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .header-container {
+    flex-direction: column; /* Impila il titolo e il pulsante verticalmente */
+    align-items: flex-start; /* Allinea a sinistra */
+    gap: 1rem; /* Spazio tra il titolo e il pulsante */
+  }
+
+  .header-container button {
+    align-self: flex-end; /* Allinea il pulsante a destra */
+  }
+
+  .highlight-items {
+    justify-content: center; /* Centra le card */
+  }
+
+  .highlight-item {
+    width: 100%;
+    height: auto; /* Riduce la larghezza minima delle card */
+  }
+}
+
+@media (max-width: 480px) {
+  .highlights {
+    padding: 2rem 1rem; /* Riduce ulteriormente il padding su schermi molto piccoli */
+  }
+
+  .header-container h2 {
+    font-size: 1.5rem; /* Riduce la dimensione del titolo */
+  }
+
+  .highlight-item {
+    width: 100%;
+    height: auto;/* Rimuove il limite di larghezza massima */
+  }
+}
+
+
+/* TESTIMONALS */
+.testimonial {
+  padding: 40px 20px;
+  text-align: center;
+  background-color: #495e57;
+}
+
+.testimonial h2 {
+  margin-bottom: 30px;
+  font-size: 2rem;
+  color: #333;
+}
+
+/* Stile della griglia */
+.testimonial-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 20px;
+  justify-content: center;
+}
+
+/* Stile delle card */
+.testimonial-card {
+  background-color: #fff;
+  border-radius: 8px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+  text-align: center;
+}
+
+.testimonial-card img {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  object-fit: cover;
+  margin-bottom: 15px;
+}
+
+.testimonial-card p:first-of-type {
+  font-size: 1rem;
+  color: #555;
+  margin-bottom: 10px;
+}
+
+.testimonial-card p:last-of-type {
+  font-size: 0.9rem;
+  color: #888;
+}
+
+/* ABOUT */
+
+/* Stile della sezione about */
+.about {
+  padding: 60px 20px;
+  background-color: #f9f9f9;
+}
+
+.about-content {
+  display: grid;
+  grid-template-columns: 1fr 1fr; /* Due colonne: testo a sinistra, immagini a destra */
+  gap: 40px;
+  align-items: center; /* Allinea verticalmente il contenuto */
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+/* Stile del testo */
+.about-text {
+  text-align: left;
+}
+
+.about-text h2 {
+  font-size: 2.5rem;
+  color: #333;
+  margin-bottom: 10px;
+}
+
+.about-text h4 {
+  font-size: 1.5rem;
+  color: #555;
+  margin-bottom: 20px;
+}
+
+.about-text p {
+  font-size: 1rem;
+  color: #555;
+  line-height: 1.6;
+}
+
+/* Stile delle immagini */
+.about-images {
+  position: relative;
+  width: 100%;
+  height: 400px; /* Altezza fissa per le immagini */
+}
+
+.about-images img {
+  position: absolute;
+  width: 80%; /* Ridimensiona le immagini rispetto al contenitore */
+  border-radius: 8px;
+  object-fit: cover;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.image-top {
+  top: 0;
+  right: -2rem;
+  z-index: 2; /* Immagine sopra */
+}
+
+.image-bottom {
+  bottom: -2rem;
+  left: 0;
+  z-index: 1; /* Immagine sotto */
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .about-content {
+    grid-template-columns: 1fr; /* Una colonna su dispositivi mobili */
+  }
+
+  .about-images {
+    height: auto; /* Altezza automatica per adattarsi alle immagini */
+    position: static;
+  }
+
+  .about-images img {
+    position: static;
+    width: 100%;
+    margin-bottom: 20px;
+  }
+}
+
+/* FOOTER */
+
+/* Stile generale del footer */
+.footer {
+  background-color: #3d4e44;
+  color: white;
+  padding: 40px 60px;
+  display: flex;
+  flex-direction: row;
+  justify-items: center;
+  flex-wrap: wrap;
+  font-family: Arial, sans-serif;
+}
+
+/* Stile delle sezioni del footer */
+.footer-section {
+  flex: 1;
+  min-width: 200px;
+  margin-bottom: 20px;
+  padding-left: 6rem;
+ 
+}
+
+/* Stile del logo */
+.footer-logo {
+  width: 200px;
+  margin-top: 10px;
+  fill: white;
+}
+
+/* Stile dei titoli */
+.footer-section h3,
+.footer-section h4 {
+  font-size: 1.2rem;
+  margin-bottom: 15px;
+}
+
+/* Stile delle liste di link */
+.footer-links,
+.footer-social {
+  list-style: none;
+  padding: 0;
+}
+
+.footer-links li,
+.footer-social li {
+  margin-bottom: 10px;
+}
+
+.footer-links a,
+.footer-social a {
+  color: white;
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+.footer-links a:hover,
+.footer-social a:hover {
+  color: #ffcc00; /* Cambia colore al passaggio del mouse */
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .footer {
+    text-align: center;
+  }
+
+  .footer-section {
+    flex: 1 1 100%;
+    margin-bottom: 30px;
+  }
 }

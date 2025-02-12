@@ -5,9 +5,11 @@ import dessert from '../icons_assets/lemon dessert.jpg';
 
 const Highlights = () => {
   return (
-    <section className="highlights">
-      <h2>I nostri Piatti Preferiti</h2>
-      <button>Ordina Online</button>
+    <section className="highlights container">
+      <div className="header-container">
+        <h2>This week's specials!</h2>
+        <button>Ordina Online</button>
+      </div>
       <div className="highlight-items">
         <div className="highlight-item">
           <img src={salad} alt="Dish 1" />
