@@ -233,7 +233,7 @@ nav li a:hover {
 
 /* TESTIMONALS */
 .testimonial {
-  padding: 40px 20px;
+  padding: 60px 40px;
   text-align: center;
   background-color: #495e57;
 }
@@ -241,7 +241,7 @@ nav li a:hover {
 .testimonial h2 {
   margin-bottom: 30px;
   font-size: 2rem;
-  color: #333;
+  color: #fff;
 }
 
 /* Stile della griglia */
@@ -258,7 +258,7 @@ nav li a:hover {
   border-radius: 8px;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
   padding: 20px;
-  text-align: center;
+  text-align: left;
 }
 
 .testimonial-card img {
