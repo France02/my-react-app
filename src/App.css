@@ -12,18 +12,24 @@
 
 /* HEADER */
 
-nav{
+/* Stile generale per la navbar */
+nav {
   display: flex;
   justify-content: space-between;
   align-items: center;
   padding: 20px 20px;
+  background-color: #f8f9fa; /* Colore di sfondo chiaro */
 }
 
-nav ul{
+nav .logo {
+  height: 50px; /* Dimensione del logo */
+}
+
+/* Stile per i link di navigazione */
+nav ul.nav-links {
   display: flex;
   list-style: none;
   gap: 2rem;
-  text-decoration: none;
 }
 
 nav li a {
@@ -37,6 +43,48 @@ nav li a:hover {
   color: yellow; /* Cambia colore al passaggio del mouse */
 }
 
+/* Icona hamburger (visibile solo su dispositivi mobili) */
+.hamburger-icon {
+  display: none; /* Nascosta di default */
+  font-size: 2rem;
+  cursor: pointer;
+  transition: transform 0.3s ease; /* Aggiunge una transizione fluida */
+}
+
+.hamburger-icon.active {
+  transform: rotate(90deg); /* Ruota l'icona di 90 gradi */
+}
+
+/* Stile per il menu su dispositivi mobili */
+@media (max-width: 768px) {
+  /* Nascondi il menu normale su dispositivi mobili */
+  nav ul.nav-links {
+    display: none;
+    flex-direction: column;
+    background-color: #f8f9fa;
+    position: absolute;
+    top: 80px; /* Sotto la navbar */
+    right: 0;
+    width: 100%;
+    padding: 20px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    opacity: 0; /* Inizia invisibile */
+    transform: translateY(-20px); /* Inizia leggermente sopra */
+    transition: opacity 0.3s ease, transform 0.3s ease; /* Aggiunge una transizione fluida */
+  }
+
+  /* Mostra il menu quando è attivo */
+  nav ul.nav-links.active {
+    display: flex;
+    opacity: 1; /* Diventa visibile */
+    transform: translateY(0); /* Torna alla posizione originale */
+  }
+
+  /* Mostra l'icona hamburger su dispositivi mobili */
+  .hamburger-icon {
+    display: block;
+  }
+}
 /* HERO */
 
 .hero {
@@ -436,4 +484,71 @@ nav li a:hover {
     flex: 1 1 100%;
     margin-bottom: 30px;
   }
+}
+
+/* RESERVATIONS */
+
+form {
+  display: grid;
+  gap: 15px;
+  max-width: 400px;
+  margin: 0 auto;
+  padding: 20px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  background-color: #fff; /* Bianco */
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+/* Stile delle etichette */
+label {
+  font-size: 14px;
+  font-weight: bold;
+  color: #495e57; /* Verde scuro */
+}
+
+/* Stile degli input e select */
+input[type="date"],
+input[type="number"],
+select {
+  padding: 10px;
+  font-size: 16px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  background-color: #fff; /* Bianco */
+  color: #495e57; /* Verde scuro */
+  transition: border-color 0.3s ease;
+}
+
+/* Hover sugli input e select */
+input[type="date"]:focus,
+input[type="number"]:focus,
+select:focus {
+  border-color: #e0b800; /* Giallo dorato */
+  outline: none;
+}
+
+/* Stile del pulsante di invio */
+button[type="submit"] {
+  padding: 10px;
+  font-size: 16px;
+  color: #fff; /* Bianco */
+  background-color: #e0b800; /* Giallo dorato */
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+/* Hover sul pulsante */
+button[type="submit"]:hover {
+  background-color: #c4a400; /* Giallo dorato più scuro */
+}
+
+/* Messaggio di errore (opzionale) */
+.error {
+  color: #e0b800; /* Giallo dorato */
+  font-size: 12px;
+  margin-top: -10px;
+  margin-bottom: 10px;
 }
