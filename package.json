@@ -1,5 +1,8 @@
 {
   "name": "little-lemon",
+  "engines": {
+    "node": "16.x"
+  },
   "version": "0.1.0",
   "private": true,
   "dependencies": {
@@ -38,8 +41,4 @@
   "devDependencies": {
     "@babel/plugin-proposal-private-property-in-object": "^7.21.11"
   }
-  "engines": {
-  "node": "16.x"
-  }
-
 }
