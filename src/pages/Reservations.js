@@ -1,57 +1,46 @@
-import React, { useReducer, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 import BookingForm from '../components/BookingForm';
 import BookingSlot from '../components/BookingSlot';
-import { fetchAPI } from '../apiWrapper'; // Importa fetchAPI
-
-// Riduttore per gestire availableTimes
-const timesReducer = (state, action) => {
-  switch (action.type) {
-    case 'INITIALIZE_TIMES':
-      return action.payload;
-
-    case 'UPDATE_TIMES':
-      return action.payload;
-
-    default:
-      throw new Error(`Azione sconosciuta: ${action.type}`);
-  }
-};
+import * as API from '../api';
 
 const Reservations = () => {
-  // Stato iniziale: array vuoto
-  const initialState = [];
+  const [availableTimes, setAvailableTimes] = useState([]);
+  const navigate = useNavigate();
 
-  // Usa useReducer per gestire availableTimes
-  const [availableTimes, dispatch] = useReducer(timesReducer, initialState);
-
-  // Effetto per inizializzare gli orari disponibili per la data odierna
   useEffect(() => {
-    const initializeTimes = async () => {
-      const today = new Date().toISOString().split('T')[0]; // Data odierna in formato YYYY-MM-DD
-      const times = await fetchAPI(today); // Chiamata API per ottenere gli orari disponibili
-      dispatch({ type: 'INITIALIZE_TIMES', payload: times });
-    };
-    initializeTimes();
+    const today = new Date();
+    setAvailableTimes(API.fetchAPI(today));
   }, []);
 
-  // Funzione per aggiornare gli orari disponibili in base alla data selezionata
-  const updateAvailableTimes = async (selectedDate) => {
-    const times = await fetchAPI(selectedDate); // Chiamata API per ottenere gli orari disponibili
-    dispatch({ type: 'UPDATE_TIMES', payload: times });
+  const submitForm = async (formData) => {
+    const success = await API.submitAPI(formData);
+    if (success) {
+      // (Opzionale) aggiorna gli orari disponibili rimuovendo l'orario prenotato
+      const updatedTimes = availableTimes.filter((time) => time !== formData.time);
+      setAvailableTimes(updatedTimes);
+
+      // Naviga alla pagina di conferma, passando i dati del modulo tramite state
+      navigate('/confirmed', { state: formData });
+    } else {
+      alert("Errore nell'invio della prenotazione. Riprova.");
+    }
   };
 
   return (
-    <section style={styles.container}>
-      <h1 style={styles.title}>Prenotazioni</h1>
-      <p style={styles.subtitle}>Compila il modulo sottostante per prenotare un tavolo.</p>
+    <section style={styles.section}>
+      <h1>Prenotazioni</h1>
+      <p>Compila il modulo sottostante per prenotare un tavolo.</p>
 
-      {/* Passa lo stato e la funzione di aggiornamento al componente figlio */}
-      <BookingForm availableTimes={availableTimes} updateAvailableTimes={updateAvailableTimes} />
+      <BookingForm
+        availableTimes={availableTimes}
+        updateAvailableTimes={setAvailableTimes}
+        submitForm={submitForm} // Passa la funzione submitForm al modulo
+      />
 
-      {/* Mostra gli slot di prenotazione disponibili */}
-      <div style={styles.bookingSlotsContainer}>
+      <div style={styles.slotsContainer}>
         <h2>Slot di prenotazione disponibili:</h2>
-        <div style={styles.bookingSlots}>
+        <div style={styles.slots}>
           {availableTimes.map((time, index) => (
             <BookingSlot key={index} time={time} />
           ))}
@@ -62,28 +51,17 @@ const Reservations = () => {
 };
 
 const styles = {
-  container: {
+  section: {
     textAlign: 'center',
     marginTop: '50px',
     padding: '20px',
     maxWidth: '600px',
     margin: '0 auto',
   },
-  title: {
-    fontSize: '28px',
-    fontWeight: 'bold',
-    marginBottom: '20px',
-    color: '#333',
-  },
-  subtitle: {
-    fontSize: '18px',
-    color: '#666',
-    marginBottom: '30px',
-  },
-  bookingSlotsContainer: {
+  slotsContainer: {
     marginTop: '40px',
   },
-  bookingSlots: {
+  slots: {
     display: 'flex',
     flexWrap: 'wrap',
     gap: '10px',

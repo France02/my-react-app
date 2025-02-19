@@ -9,6 +9,7 @@ import Menu from './pages/Menu'; // Importa dalla cartella pages
 import Reservations from './pages/Reservations';
 import OrderOnline from './pages/OrderOnline';
 import Login from './pages/Login';
+import ConfirmedBooking from './pages/ConfirmedBooking';
 
 function App() {
   return (
@@ -20,6 +21,7 @@ function App() {
           <Route path="/about" element={<About />} />
           <Route path="/menu" element={<Menu />} />
           <Route path="/reservations" element={<Reservations />} />
+          <Route path="/confirmed" element={<ConfirmedBooking />} />
           <Route path="/orderonline" element={<OrderOnline />} />
           <Route path="/login" element={<Login />} />
         </Routes>
