@@ -1,5 +1,5 @@
-// components/BookingForm.js
 import React, { useState } from 'react';
+import { submitAPI } from '../apiWrapper'; // Importa submitAPI
 
 function BookingForm({ availableTimes, updateAvailableTimes }) {
   const [formData, setFormData] = useState({
@@ -11,25 +11,34 @@ function BookingForm({ availableTimes, updateAvailableTimes }) {
 
   const handleChange = (e) => {
     const { name, value } = e.target;
+
+    // Se il campo modificato è "date", aggiorna gli orari disponibili
+    if (name === 'date') {
+      updateAvailableTimes(value);
+    }
+
     setFormData((prevData) => ({
       ...prevData,
       [name]: value,
     }));
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
 
-   
-    const updatedTimes = availableTimes.filter((time) => time !== formData.time);
-    updateAvailableTimes(updatedTimes);
+    // Invia i dati del modulo tramite API
+    const success = await submitAPI(formData);
 
-    alert(`Prenotazione inviata:\n${JSON.stringify(formData, null, 2)}`);
+    if (success) {
+      alert('Prenotazione inviata con successo!');
+    } else {
+      alert('Errore durante l\'invio della prenotazione.');
+    }
   };
 
   return (
     <form onSubmit={handleSubmit}>
-    
+      {/* Data */}
       <label htmlFor="res-date">Scegli la data:</label>
       <input
         type="date"
@@ -40,7 +49,7 @@ function BookingForm({ availableTimes, updateAvailableTimes }) {
         required
       />
 
-      
+      {/* Ora */}
       <label htmlFor="res-time">Scegli l'ora:</label>
       <select
         id="res-time"
@@ -57,7 +66,7 @@ function BookingForm({ availableTimes, updateAvailableTimes }) {
         ))}
       </select>
 
-      
+      {/* Numero di ospiti */}
       <label htmlFor="guests">Numero di ospiti:</label>
       <input
         type="number"
@@ -70,7 +79,7 @@ function BookingForm({ availableTimes, updateAvailableTimes }) {
         required
       />
 
-      
+      {/* Occasione */}
       <label htmlFor="occasion">Occasione:</label>
       <select
         id="occasion"
@@ -83,7 +92,7 @@ function BookingForm({ availableTimes, updateAvailableTimes }) {
         <option value="anniversario">Anniversario</option>
       </select>
 
-     
+      {/* Pulsante di invio */}
       <button type="submit">Invia prenotazione</button>
     </form>
   );
