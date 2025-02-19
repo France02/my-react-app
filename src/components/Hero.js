@@ -11,7 +11,7 @@ const Hero = () => {
         <p>We are a family owned Mediterranean<br/>restaurant, focused on traditional<br/> recipes served with a modern twist.</p>
       <button>Prenota Ora</button>
       </div>
-      <img src={hero} alt="Hero Image" />
+      <img src={hero} alt="Little Lemon Logo" />
     </section>
   );
 };
