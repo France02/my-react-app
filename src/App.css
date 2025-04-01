@@ -18,7 +18,7 @@ nav {
   justify-content: space-between;
   align-items: center;
   padding: 20px 20px;
-  background-color: #f8f9fa; /* Colore di sfondo chiaro */
+  
 }
 
 nav .logo {
@@ -475,14 +475,35 @@ nav li a:hover {
 }
 
 /* Responsive Design */
+/* Nel media query esistente per dispositivi mobile */
 @media (max-width: 768px) {
   .footer {
-    text-align: center;
+    text-align: center; /* Mantiene il testo centrato */
+    padding: 40px 20px; /* Riduce il padding laterale per una migliore visualizzazione mobile */
   }
 
   .footer-section {
     flex: 1 1 100%;
     margin-bottom: 30px;
+    padding-left: 0; /* Rimuove il padding a sinistra */
+    text-align: center; /* Centra il contenuto all'interno di ogni sezione */
+  }
+
+  .footer-logo {
+    width: 150px; /* Ridimensiona il logo per adattarlo ai dispositivi mobile */
+    margin: 0 auto; /* Centra il logo orizzontalmente */
+  }
+
+  /* Centra i link e i contatti */
+  .footer-links,
+  .footer-social {
+    text-align: center;
+  }
+
+  /* Aggiunge un po' di spazio tra gli elementi */
+  .footer-links li,
+  .footer-social li {
+    margin: 8px 0;
   }
 }
 
