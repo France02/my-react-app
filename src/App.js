@@ -10,6 +10,14 @@ import Reservations from './pages/Reservations';
 import OrderOnline from './pages/OrderOnline';
 import Login from './pages/Login';
 import ConfirmedBooking from './pages/ConfirmedBooking';
+import AOS from 'aos';
+import 'aos/dist/aos.css';
+
+AOS.init({
+  duration: 800,
+  easing: 'ease-in-out',
+  once: true,
+});
 
 function App() {
   return (

@@ -6,30 +6,44 @@ import dessert from '../icons_assets/lemon dessert.jpg';
 const Highlights = () => {
   return (
     <section className="highlights container">
-      <div className="header-container">
+      <div className="header-container" data-aos="fade-up">
         <h2>This week's specials!</h2>
-        <button>Ordina Online</button>
+        <button className="cta-button">Order Now</button>
       </div>
+      
       <div className="highlight-items">
-        <div className="highlight-item">
-          <img src={salad} alt="Dish 1" loading='lazy' />
-          <h4>Greek salad</h4>
-          <p>$12.99</p>
-          <p>The famous greek salad of crispy lettuce, peppers, olives and our Chicago style feta cheese, garnished with crunchy garlic and rosemary croutons. </p>
+        <div className="highlight-item" data-aos="zoom-in-up">
+          <img src={salad} alt="Fresh Greek salad with feta and vegetables" loading='lazy' />
+          <div className="item-content">
+            <div className="header">
+              <h4>Greek Salad</h4>
+              <p className="price">$12.99</p>
+            </div>
+            <p className="description">Crispy lettuce, peppers, olives, and Chicago-style feta with garlic-rosemary croutons.</p>
+          </div>
         </div>
-        <div className="highlight-item">
-          <img src={bruschetta} alt="Dish 1" loading='lazy'/>
-          <h4>Bruchetta</h4>
-          <p>$5.99</p>
-          <p>Our Bruschetta is made from grilled bread that has been smeared with garlic and seasoned with salt and olive oil. </p>
+
+        <div className="highlight-item" data-aos="zoom-in-up" data-aos-delay="200">
+          <img src={bruschetta} alt="Traditional Italian bruschetta with tomatoes" loading='lazy'/>
+          <div className="item-content">
+            <div className="header">
+              <h4>Bruschetta</h4>
+              <p className="price">$5.99</p>
+            </div>
+            <p className="description">Grilled bread with garlic, fresh tomatoes, and extra virgin olive oil.</p>
+          </div>
         </div>
-        <div className="highlight-item">
-          <img src={dessert} alt="Dish 1" loading='lazy' />
-          <h4>Lemon Dessert</h4>
-          <p>$5.00</p>
-          <p>This comes straight from grandma's recipe book, every last ingredient has been sourced and is as authentic as can be imagined. </p>
+
+        <div className="highlight-item" data-aos="zoom-in-up" data-aos-delay="400">
+          <img src={dessert} alt="Authentic lemon dessert with mint" loading='lazy' />
+          <div className="item-content">
+            <div className="header">
+              <h4>Lemon Dessert</h4>
+              <p className="price">$5.00</p>
+            </div>
+            <p className="description">Classic family recipe with homemade lemon curd and whipped cream.</p>
+          </div>
         </div>
-        
       </div>
     </section>
   );

@@ -1,26 +1,33 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { FaBars } from 'react-icons/fa'; // Importa l'icona a hamburger
+import { FaBars, FaTimes } from 'react-icons/fa';
 import logo from "../icons_assets/Logo.svg";
 
 const Header = () => {
-  const [isMenuOpen, setIsMenuOpen] = useState(false); // Stato per gestire l'apertura/chiusura del menu
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   return (
     <header>
       <nav className="container">
-        
-        <img src={logo} alt="Little Lemon Logo" className="logo" />
+        <Link to="/" onClick={() => setIsMenuOpen(false)}>
+          <img src={logo} alt="Little Lemon Logo" className="logo" />
+        </Link>
 
-      
-        <div
-          className={`hamburger-icon ${isMenuOpen ? 'active' : ''}`}
+        {/* Pulsante hamburger migliorato */}
+        <button 
+          className={`hamburger ${isMenuOpen ? 'active' : ''}`} 
           onClick={() => setIsMenuOpen(!isMenuOpen)}
+          aria-label="Toggle menu"
+          aria-expanded={isMenuOpen}
         >
-          <FaBars size={24} />
-        </div>
+          <FaBars className="icon bars" />
+          <FaTimes className="icon times" />
+        </button>
 
-        
+        {/* Menu con backdrop */}
+        <div className={`mobile-backdrop ${isMenuOpen ? 'active' : ''}`} 
+             onClick={() => setIsMenuOpen(false)} />
+
         <ul className={`nav-links ${isMenuOpen ? 'active' : ''}`}>
           <li><Link to="/" onClick={() => setIsMenuOpen(false)}>Home</Link></li>
           <li><Link to="/about" onClick={() => setIsMenuOpen(false)}>About</Link></li>
